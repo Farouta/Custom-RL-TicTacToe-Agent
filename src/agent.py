@@ -48,6 +48,8 @@ class Agent:
         error=reward+self.gamma*best_future_score -old_q_value
         new_q_value=old_q_value+self.alpha*error
         self.q_table[state_key][action]=new_q_value
+
+        
     def save_model(self, filename="q_table.pkl"):
         with open(filename, "wb") as f:
             pickle.dump(self.q_table, f)

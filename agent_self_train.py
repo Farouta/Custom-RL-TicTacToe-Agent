@@ -12,15 +12,15 @@ agent1.load_model("trained_agent1.pkl")
 agent2 = Agent()
 agent2.load_model("trained_agent2.pkl") 
 
-num_games = 20000
-batch_size = 1000
+num_games = 1000
+batch_size = 100
 
 win_log, loss_log, draw_log = [], [], []
 total_wins, total_losses, total_draws = 0, 0, 0
 
 # Settings
-agent1.epsilon = 0.01  
-agent2.epsilon = 0.01 
+agent1.epsilon = 0.0  
+agent2.epsilon = 0.0 
 
 print("Starting Self-Play Training...")
 
@@ -126,12 +126,12 @@ print("Models saved.")
 print("Training complete!")
 
 plt.figure(figsize=(12, 6))
-plt.plot(win_log, label='AI Win Rate')
-plt.plot(loss_log, label='AI Loss Rate')
-plt.plot(draw_log, label='Draw Rate')
-plt.xlabel(f'Batch of {batch_size} Games')
-plt.ylabel('Rate')
-plt.title('Self-Play Training Performance')
+plt.plot(win_log, label="AI Win Rate")
+plt.plot(loss_log, label="AI Loss Rate")
+plt.plot(draw_log, label="Draw Rate")
+plt.xlabel(f"Batch of {batch_size} Games")
+plt.ylabel("Rate")
+plt.title("tranied_Agent vs. trained_Agent (Self-Play)")
 plt.legend()
 plt.grid(True)
 plt.show()
