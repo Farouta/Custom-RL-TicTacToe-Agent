@@ -90,11 +90,18 @@ class tictactoe :
     
 
     def player_move(self):
-        r=int(input("Insert Row= "))
-        c=int(input("Insert Col= "))
-        return self.next_move(r,c)
+        while True:
+            try:
+                r = int(input("Insert Row (0-2): "))
+                c = int(input("Insert Col (0-2): "))
+                result = self.next_move(r, c)
 
-    
+                if result is not False:
+                    return result
+                print("Try again.\n")
+            except ValueError:
+                print("Invalid input! Please enter a number.\n")
+        
     def play_game(self):
         random_start=np.random.randint(low=0,high=2)==0
 

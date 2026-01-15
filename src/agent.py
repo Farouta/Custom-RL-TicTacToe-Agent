@@ -6,10 +6,12 @@ import pickle
 class Agent:
     def __init__(self):
         self.alpha=0.2
+        self.alpha_decay_rate=0.9995
+        self.alpha_min=0.0001
         self.gamma=0.95
         self.epsilon=0.3
-        self.epsilon_decay_rate = 0.99995
-        self.epsilon_min = 0.0000000001
+        self.epsilon_decay_rate = 0.9995
+        self.epsilon_min = 0.0
         self.q_table={} 
     def choose_action(self,state_key,possible_actions):
         explore=np.random.choice([1,0],p=[self.epsilon,1-self.epsilon])
