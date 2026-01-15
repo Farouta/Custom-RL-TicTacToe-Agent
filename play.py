@@ -5,7 +5,7 @@ import random
 game2= tictactoe()
 agent2=Agent()
 
-agent2.load_model("trained_agent2.pkl")
+agent2.load_model("trained_agents/trained_agent2.pkl")
 agent2.epsilon = 0.0
 current_player=random.randint(1,2)
 game2.current_player = current_player
