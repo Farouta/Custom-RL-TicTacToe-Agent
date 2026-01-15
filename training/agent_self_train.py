@@ -1,3 +1,5 @@
+import paths
+
 from src.environment import tictactoe
 from src.agent import Agent
 import random
@@ -5,22 +7,17 @@ import matplotlib.pyplot as plt
 
 game1 = tictactoe()
 
-# Agent 1: The "Learner" 
 agent1 = Agent() 
-agent1.load_model("trained_agent2.pkl") 
-
 agent2 = Agent()
-agent2.load_model("trained_agent2.pkl") 
+#if you have already trained agent2 against a bot with agent_bot_train.py you can use it as a teacher for the agent1
+#agent2.load_model("./trained_agents/trained_agent2.pkl") 
 
-num_games = 50000
+num_games = 15000
 batch_size = 1000
 
 win_log, loss_log, draw_log = [], [], []
 total_wins, total_losses, total_draws = 0, 0, 0
 
-# Settings
-agent1.epsilon = 0.0  
-agent2.epsilon = 0.1  
 
 print("Starting Self-Play Training...")
 
@@ -32,6 +29,8 @@ for epoch in range(num_games):
 
     agent1.epsilon = max(agent1.epsilon * agent1.epsilon_decay_rate, agent1.epsilon_min)
     agent2.epsilon = max(agent2.epsilon * agent2.epsilon_decay_rate, agent2.epsilon_min)
+    agent1.alpha = max(agent1.alpha * agent1.alpha_decay_rate, agent1.alpha_min)
+    agent2.alpha = max(agent2.alpha * agent2.alpha_decay_rate, agent2.alpha_min)
 
     current_player = 1 if epoch % 2 == 0 else 2
     game1.current_player=current_player
@@ -117,8 +116,8 @@ for epoch in range(num_games):
         total_losses = 0
         total_draws = 0
 
-agent1.save_model("trained_agent1.pkl")
-agent2.save_model("trained_agent2.pkl")
+agent1.save_model("./trained_agents/trained_agent1.pkl")
+agent2.save_model("./trained_agents/trained_agent2.pkl")
 print("Models saved.")
 
 print("Training complete!")

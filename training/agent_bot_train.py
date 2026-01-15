@@ -1,3 +1,5 @@
+import paths
+
 from src.environment import tictactoe
 from src.agent import Agent
 import random
@@ -6,14 +8,10 @@ import matplotlib.pyplot as plt
 game1=tictactoe()
 agent2=Agent()
 
-win_log = []
-loss_log = []
-draw_log = []
-total_wins = 0
-total_losses = 0
-total_draws = 0
+win_log, loss_log, draw_log = [], [], []
+total_wins, total_losses, total_draws = 0, 0, 0
 
-num_games = 50000
+num_games = 15000
 batch=1000
 for epoch in range (num_games):
     game1.reset_game()
@@ -85,7 +83,7 @@ for epoch in range (num_games):
             total_wins = 0
             total_losses = 0
             total_draws = 0
-agent2.save_model("trained_agent2.pkl")
+agent2.save_model("./trained_agents/trained_agent2.pkl")
 
 
 print("Training complete!")

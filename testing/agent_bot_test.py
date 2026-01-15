@@ -1,3 +1,5 @@
+import paths
+
 from src.environment import tictactoe
 from src.agent import Agent
 import random
@@ -6,15 +8,11 @@ import matplotlib.pyplot as plt
 game1=tictactoe()
 agent2=Agent()
 
-agent2.load_model("trained_agents/trained_agent1.pkl")
+agent2.load_model("./trained_agents/trained_agent1.pkl")
 agent2.epsilon = 0.0
 
-win_log = []
-loss_log = []
-draw_log = []
-total_wins = 0
-total_losses = 0
-total_draws = 0
+win_log, loss_log, draw_log = [], [], []
+total_wins, total_losses, total_draws = 0, 0, 0
 
 num_games = 1000
 batch=100
