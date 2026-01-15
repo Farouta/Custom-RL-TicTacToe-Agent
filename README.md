@@ -12,7 +12,7 @@ While Tic-Tac-Toe is a solved game, it served as an excellent sandbox for me to 
 
 My initial approach involved training the agent against a bot that made random moves. 
 
-On paper, this looked successful. Within 50,000 iterations, the loss rate dropped significantly. However, when I played against the agent myself, I found it was easy to beat. 
+On paper, this looked successful. Within 15,000 iterations, the loss rate dropped significantly. However, when I played against the agent myself, I found it was easy to beat. 
 
 ![Agent vs Bot Training](images/agent_vs_bot_training.png)
 *Above: Training metrics against a random bot. The decreasing loss gave a false sense of mastery.*
@@ -55,8 +55,18 @@ In Tic-Tac-Toe, two perfect players will always draw. The high draw rate confirm
 
 1. Clone the repository.
 2. Ensure you have `torch`, `numpy`, and `matplotlib` installed.
-3. Run the training script to play against the trained agent:
-
+```bash
+pip install -r requirements.txt
+```
+3. To play against the trained agent:
 ```bash
 python play.py
+```
+If you want to start over by either training against the random_bot:
+```bash
+python training/agent_bot_train.py
+```
+or trying out an agent against an agent:
+```bash
+python training/agent_self_train.py
 ```
