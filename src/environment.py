@@ -10,8 +10,15 @@ class tictactoe :
         self.gameover=False
 
     def view_board(self):
-        print(self.board)
-        
+        symbols = {0: ' ', 1: 'X', 2: 'O'}
+        print("\n    0   1   2")
+        for i in range(3):
+            row = [symbols[self.board[i, j].item()] for j in range(3)]
+            print(f"{i}   {row[0]} | {row[1]} | {row[2]} ")
+            if i < 2:
+                print("   ---+---+---")
+
+
     def check_win(self, row_in , col_in):
 
         def checking (current):
@@ -83,8 +90,8 @@ class tictactoe :
     
 
     def player_move(self):
-        r=int(input("row"))
-        c=int(input("col"))
+        r=int(input("Insert Row= "))
+        c=int(input("Insert Col= "))
         return self.next_move(r,c)
 
     

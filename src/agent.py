@@ -1,6 +1,7 @@
 import torch
 import random
 import numpy as np
+import pickle
 
 class Agent:
     def __init__(self):
@@ -45,6 +46,19 @@ class Agent:
         error=reward+self.gamma*best_future_score -old_q_value
         new_q_value=old_q_value+self.alpha*error
         self.q_table[state_key][action]=new_q_value
+    def save_model(self, filename="q_table.pkl"):
+        with open(filename, "wb") as f:
+            pickle.dump(self.q_table, f)
+        print(f"Model saved to {filename}")
+
+    def load_model(self, filename="q_table.pkl"):
+        """Loads the Q-table from a file."""
+        try:
+            with open(filename, "rb") as f:
+                self.q_table = pickle.load(f)
+            print(f"Model loaded from {filename}")
+        except FileNotFoundError:
+            print("No saved model found! Starting with empty Q-table.")
 
 
 

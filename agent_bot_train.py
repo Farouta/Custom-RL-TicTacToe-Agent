@@ -1,5 +1,6 @@
 from src.environment import tictactoe
 from src.agent import Agent
+import random
 import matplotlib.pyplot as plt
 
 game1=tictactoe()
@@ -12,13 +13,14 @@ total_wins = 0
 total_losses = 0
 total_draws = 0
 
-num_games = 50000
+num_games = 20000
 batch=500
 for epoch in range (num_games):
     game1.reset_game()
     last_agent_s = None
     last_agent_a = None
-    current_player=1
+    current_player=random.randint(1,2)
+    game1.current_player = current_player
     agent2.epsilon = max(agent2.epsilon * agent2.epsilon_decay_rate, agent2.epsilon_min)
     while (not (game1.gameover)):
         
@@ -82,6 +84,8 @@ for epoch in range (num_games):
             total_wins = 0
             total_losses = 0
             total_draws = 0
+agent2.save_model("trained_agent2.pkl")
+
 
 print("Training complete!")
 plt.figure(figsize=(12, 6))
